@@ -13,7 +13,7 @@ export class EmployeeEntity {
   id: number;
 
   @Column({ name: 'document_id', nullable: false })
-  documentId: number;
+  documentId: string;
 
   @Column({ name: 'first_name', nullable: false })
   firstname: string;
