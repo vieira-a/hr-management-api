@@ -5,10 +5,11 @@ import {
   HttpCode,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
 } from '@nestjs/common';
 
-import { CreateEmployeeDto } from '../dtos';
+import { CreateEmployeeDto, UpdateEmployeeDto } from '../dtos';
 import { EmployeeService } from '../services';
 
 @Controller('employee')
@@ -32,5 +33,15 @@ export class EmployeeController {
   @HttpCode(200)
   async readById(@Param('id', ParseIntPipe) id: number) {
     return await this.employeeService.readById(id);
+  }
+
+  @Patch(':id')
+  @HttpCode(202)
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() employeeData: UpdateEmployeeDto,
+  ) {
+    await this.employeeService.update(id, employeeData);
+    return 'Employee updated successfully.';
   }
 }

@@ -1,9 +1,11 @@
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 
-import { CreateEmployeeDto } from '../dtos';
+import { CreateEmployeeDto, UpdateEmployeeDto } from '../dtos';
 import { EmployeeEntity } from '../entities';
 
+@Injectable()
 export class EmployeeService {
   constructor(
     @InjectRepository(EmployeeEntity)
@@ -24,5 +26,14 @@ export class EmployeeService {
         id: employeeId,
       },
     });
+  }
+
+  async update(
+    id: number,
+    employeeData: UpdateEmployeeDto,
+  ): Promise<false | UpdateResult> {
+    const result = await this.repository.update(id, employeeData);
+    console.log('Service result', result);
+    return result;
   }
 }
