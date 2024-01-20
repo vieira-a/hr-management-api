@@ -34,7 +34,11 @@ export class EmployeeController {
   @Get(':id')
   @HttpCode(200)
   async readById(@Param('id', ParseIntPipe) id: number) {
-    return await this.employeeService.readById(id);
+    const result = await this.employeeService.readById(id);
+    if (!result) {
+      throw new NotFoundException();
+    }
+    return result;
   }
 
   @Patch(':id')
