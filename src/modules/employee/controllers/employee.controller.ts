@@ -8,7 +8,7 @@ export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
 
   @Post()
-  @HttpCode(200)
+  @HttpCode(201)
   async create(@Body() employeeData: CreateEmployeeDto) {
     await this.employeeService.create(employeeData);
     return 'Employee registred successfully.';

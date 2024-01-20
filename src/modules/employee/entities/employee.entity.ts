@@ -36,6 +36,12 @@ export class EmployeeEntity {
   @Column({ name: 'salary', nullable: false })
   salary: number;
 
+  @Column({ name: 'entry_date', nullable: false })
+  entryDate: Date;
+
+  @Column({ name: 'layoff_date', nullable: true })
+  layoffDate: Date;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 

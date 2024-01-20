@@ -11,7 +11,7 @@ export class CreateEmployeeDto {
   lastname: string;
 
   @IsNotEmpty({ message: 'Birth date is required' })
-  @IsDateString({}, { message: 'Birth date must be date format' })
+  @IsDateString({}, { message: 'Birth date must be a date format' })
   birthdate: Date;
 
   @IsNotEmpty({ message: 'Address is required' })
@@ -24,6 +24,10 @@ export class CreateEmployeeDto {
   role: string;
 
   @IsNotEmpty({ message: 'Salary is required' })
-  @IsNumber({}, { message: 'Must be number format' })
+  @IsNumber({}, { message: 'Must be a number format' })
   salary: number;
+
+  @IsNotEmpty({ message: 'Entry date is required' })
+  @IsDateString({}, { message: 'Entry date must be a date format' })
+  entryDate: Date;
 }
