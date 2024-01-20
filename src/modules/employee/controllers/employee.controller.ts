@@ -1,4 +1,12 @@
-import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Param,
+  ParseIntPipe,
+  Post,
+} from '@nestjs/common';
 
 import { CreateEmployeeDto } from '../dtos';
 import { EmployeeService } from '../services';
@@ -18,5 +26,11 @@ export class EmployeeController {
   @HttpCode(200)
   async readAll() {
     return await this.employeeService.readAll();
+  }
+
+  @Get(':id')
+  @HttpCode(200)
+  async readById(@Param('id', ParseIntPipe) id: number) {
+    return await this.employeeService.readById(id);
   }
 }
