@@ -13,4 +13,8 @@ export class EmployeeService {
   async create(employeeData: CreateEmployeeDto): Promise<EmployeeEntity> {
     return await this.repository.save(employeeData);
   }
+
+  async readAll(): Promise<EmployeeEntity[]> {
+    return await this.repository.find();
+  }
 }
