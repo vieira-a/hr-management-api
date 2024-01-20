@@ -32,7 +32,12 @@ export class EmployeeService {
     id: number,
     employeeData: UpdateEmployeeDto,
   ): Promise<false | UpdateResult> {
-    return await this.repository.update(id, employeeData);
+    const result = await this.repository.update(id, employeeData);
+
+    if (result.affected === 0) {
+      return false;
+    }
+    return result;
   }
 
   async delete(id: number) {

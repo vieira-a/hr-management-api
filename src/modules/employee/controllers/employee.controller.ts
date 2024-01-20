@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   HttpCode,
+  NotFoundException,
   Param,
   ParseIntPipe,
   Patch,
@@ -37,12 +38,15 @@ export class EmployeeController {
   }
 
   @Patch(':id')
-  @HttpCode(202)
+  @HttpCode(200)
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() employeeData: UpdateEmployeeDto,
   ) {
-    await this.employeeService.update(id, employeeData);
+    const result = await this.employeeService.update(id, employeeData);
+    if (!result) {
+      throw new NotFoundException();
+    }
     return 'Employee updated successfully.';
   }
 
