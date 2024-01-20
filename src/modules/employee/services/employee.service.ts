@@ -32,8 +32,10 @@ export class EmployeeService {
     id: number,
     employeeData: UpdateEmployeeDto,
   ): Promise<false | UpdateResult> {
-    const result = await this.repository.update(id, employeeData);
-    console.log('Service result', result);
-    return result;
+    return await this.repository.update(id, employeeData);
+  }
+
+  async delete(id: number) {
+    return await this.repository.softDelete(id);
   }
 }

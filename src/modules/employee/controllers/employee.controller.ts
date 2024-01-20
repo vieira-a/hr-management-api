@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   Param,
@@ -43,5 +44,12 @@ export class EmployeeController {
   ) {
     await this.employeeService.update(id, employeeData);
     return 'Employee updated successfully.';
+  }
+
+  @Delete(':id')
+  @HttpCode(200)
+  async delete(@Param('id', ParseIntPipe) id: number) {
+    await this.employeeService.delete(id);
+    return 'Employee deleted successfully.';
   }
 }
