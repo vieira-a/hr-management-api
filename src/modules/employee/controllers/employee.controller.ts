@@ -57,7 +57,12 @@ export class EmployeeController {
   @Delete(':id')
   @HttpCode(200)
   async delete(@Param('id', ParseIntPipe) id: number) {
-    await this.employeeService.delete(id);
+    const result = await this.employeeService.delete(id);
+
+    if (!result) {
+      throw new NotFoundException();
+    }
+
     return 'Employee deleted successfully.';
   }
 }

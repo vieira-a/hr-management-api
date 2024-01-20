@@ -40,7 +40,12 @@ export class EmployeeService {
     return result;
   }
 
-  async delete(id: number) {
-    return await this.repository.softDelete(id);
+  async delete(id: number): Promise<false | UpdateResult> {
+    const result = await this.repository.softDelete(id);
+
+    if (result.affected === 0) {
+      return false;
+    }
+    return result;
   }
 }
