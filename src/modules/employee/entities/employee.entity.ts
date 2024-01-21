@@ -15,17 +15,20 @@ export class EmployeeEntity {
   @Column({ name: 'document_id', nullable: false })
   documentId: string;
 
-  @Column({ name: 'first_name', nullable: false })
-  firstname: string;
-
-  @Column({ name: 'last_name', nullable: false })
-  lastname: string;
+  @Column({ name: 'full_name', nullable: false })
+  fullName: string;
 
   @Column({ name: 'birth_date', nullable: false })
-  birthdate: Date;
+  birthDate: Date;
 
   @Column({ name: 'address', nullable: false })
   address: string;
+
+  @Column({ name: 'email', nullable: true })
+  email: string;
+
+  @Column({ name: 'phone_number', nullable: false })
+  phoneNumber: string;
 
   @Column({ name: 'departament', nullable: false })
   departament: string;
