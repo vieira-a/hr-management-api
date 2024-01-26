@@ -1,8 +1,10 @@
 import { IsNotEmpty } from 'class-validator';
 
+import { AllowanceType } from '../enums';
+
 export class CreateAllowanceDto {
   @IsNotEmpty({ message: 'Allowance type is required' })
-  type: string;
+  type: AllowanceType;
 
   @IsNotEmpty({ message: 'Allowance description is required' })
   description: string;
