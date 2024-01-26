@@ -15,4 +15,8 @@ export class AllowanceService {
   async create(allowanceData: CreateAllowanceDto): Promise<AllowanceEntity> {
     return await this.repository.save(allowanceData);
   }
+
+  async readAll(): Promise<AllowanceEntity[]> {
+    return await this.repository.find();
+  }
 }

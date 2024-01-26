@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
 
 import { CreateAllowanceDto } from '../dtos';
 import { AllowanceService } from '../services';
@@ -12,5 +12,12 @@ export class AllowanceController {
   async create(@Body() allowanceData: CreateAllowanceDto) {
     await this.allowanceService.create(allowanceData);
     return 'Allowance registred successfully.';
+  }
+
+  @Get()
+  @HttpCode(200)
+  @HttpCode(404)
+  async readAll() {
+    return await this.allowanceService.readAll();
   }
 }
