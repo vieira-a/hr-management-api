@@ -1,4 +1,11 @@
-import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  NotFoundException,
+  Post,
+} from '@nestjs/common';
 
 import { CreateAllowanceDto } from '../dtos';
 import { AllowanceService } from '../services';
@@ -18,6 +25,10 @@ export class AllowanceController {
   @HttpCode(200)
   @HttpCode(404)
   async readAll() {
-    return await this.allowanceService.readAll();
+    const result = await this.allowanceService.readAll();
+    if (result.length === 0) {
+      throw new NotFoundException();
+    }
+    return result;
   }
 }
